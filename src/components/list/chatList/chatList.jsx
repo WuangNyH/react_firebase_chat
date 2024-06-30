@@ -19,6 +19,42 @@ const ChatList = () => {
           onClick={() => setAddMode(prev => !prev)} // Action to toggle addMode
         />
       </div>
+      {/* List User */}
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Jane Doe</span>
+          <p>Hello</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Jane Doe</span>
+          <p>Hello</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Jane Doe</span>
+          <p>Hello</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Jane Doe</span>
+          <p>Hello</p>
+        </div>
+      </div>
+      <div className="item">
+        <img src="./avatar.png" alt="" />
+        <div className="texts">
+          <span>Jane Doe</span>
+          <p>Hello</p>
+        </div>
+      </div>
     </div>
   )
 }
