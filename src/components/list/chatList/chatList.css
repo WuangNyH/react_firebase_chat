@@ -1,10 +1,13 @@
+/* Chat List Container */
 .chatList {
+    /* Search */
     .search {
         display: flex;
         align-items: center;
         gap: 20px;
         padding: 20px;
 
+        /* Search Bar */
         .searchBar {
             flex: 1;
             background-color: rgba(17, 25, 40, 0.5);
@@ -14,6 +17,7 @@
             border-radius: 10px;
             padding: 10px;
 
+            /* Search Input */
             input {
                 background-color: transparent;
                 border: none;
@@ -22,12 +26,14 @@
                 flex: 1;
             }
 
+            /* Search Icon */
             img {
                 width: 20px;
                 height: 20px;
             }
         }
 
+        /* Add Button */
         .add {
             width: 36px;
             height: 36px;

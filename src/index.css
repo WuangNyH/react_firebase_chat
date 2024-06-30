@@ -6,6 +6,7 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
+/* Backround Image */
 body {
   background-image: url("/bg.jpg");
   display: flex;
@@ -15,6 +16,7 @@ body {
   color: white;
 }
 
+/* Glass Background Effct */
 .container {
   width: 90vw;
   height: 90vh;

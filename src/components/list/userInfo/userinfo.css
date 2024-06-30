@@ -1,14 +1,17 @@
+/* UserInfo Container */
 .userinfo {
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
+    /* User Infomation */
     .user {
         display: flex;
         align-items: center;
         gap: 20px;
 
+        /* Avatar */
         img {
             width: 50px;
             height: 50px;
@@ -17,6 +20,7 @@
         }
     }
 
+    /* Icon */
     .icons {
         display: flex;
         gap: 20px;

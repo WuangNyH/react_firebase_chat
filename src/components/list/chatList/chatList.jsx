@@ -3,6 +3,7 @@ import './chatList.css'
 
 const ChatList = () => {
   
+  // Funtion to toggle addMode
   const [addMode, setAddMode] = useState(false)
 
   return (
@@ -13,9 +14,9 @@ const ChatList = () => {
           <input type="text" placeholder='Search' />
         </div>
         <img 
-          src={addMode ? "./minus.png" : "./plus.png"} 
+          src={addMode ? "./minus.png" : "./plus.png"} // Toggle between plus and minus icon
           alt="" className='add'
-          onClick={() => setAddMode(prev => !prev)}
+          onClick={() => setAddMode(prev => !prev)} // Action to toggle addMode
         />
       </div>
     </div>
