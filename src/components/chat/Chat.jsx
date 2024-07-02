@@ -47,6 +47,7 @@ const Chat = () => {
           type="text" placeholder='Type a message...'
           value={text}
           onChange={e => setText(e.target.value)}
+          onClick={() => setOpen(false)}
         />
         <div className="emoji">
           <img 
