@@ -35,7 +35,49 @@ const Chat = () => {
           <img src="./info.png" alt="" />
         </div>
       </div>
-      <div className="center"></div>
+      {/* Chat Message */}
+      <div className="center">
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="texts">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="texts">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="texts">
+          <img src="https://images.pexels.com/photos/19155212/pexels-photo-19155212/free-photo-of-roof-on-a-yellow-building.jpeg" alt="" />
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+      </div>
       {/* Type message and image */}
       <div className="bottom">
         <div className="icons">

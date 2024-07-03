@@ -1,7 +1,7 @@
 /* Chat List Container */
 .chatList {
     flex: 1;
-    overflow: scroll;
+    overflow-y: scroll;
 
     /* Search */
     .search {
@@ -80,9 +80,4 @@
             }
         }
     }
-}
-
-/* Hide scrollbar */
-.chatList::-webkit-scrollbar {
-    display: none;
 }
