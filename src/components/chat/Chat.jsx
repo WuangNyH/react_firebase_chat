@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './chat.css'
 import EmojiPicker from "emoji-picker-react"
 
@@ -12,6 +12,13 @@ const Chat = () => {
 
   // Function set Text in input message
   const [text, setText] = useState("")
+
+  // Ref for auto scroll to bottom
+  const endRef = useRef(null)
+
+  useEffect(() => {
+    endRef.current.scrollIntoView({ behavior: 'smooth' })
+  }, [])
 
   // Hanlde Aciton click emoji
   const handleEmoji = e => {
@@ -77,6 +84,8 @@ const Chat = () => {
             <span>1 min ago</span>
           </div>
         </div>
+        {/* Auto Scroll */}
+        <div ref={endRef}></div>
       </div>
       {/* Type message and image */}
       <div className="bottom">
