@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './login.css'
 import { toast } from 'react-toastify'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { auth, db } from '../../lib/firebase'
 import { doc, setDoc } from 'firebase/firestore'
 import upload from '../../lib/upload'
@@ -25,8 +25,23 @@ const Login = () => {
     }
 
     // Function to handle the login
-    const handleLogin = e => {
+    const handleLogin = async e => {
         e.preventDefault()
+        const formData = new FormData(e.target)
+        setLoading(true)
+
+        const {email, password} = Object.fromEntries(formData)
+
+        try {
+            
+            await signInWithEmailAndPassword(auth, email, password)
+
+        } catch(err) {
+            console.log(err)
+            toast.error(err.message)
+        } finally {
+            setLoading(false)
+        }
     }
 
     // Function to handle the register
