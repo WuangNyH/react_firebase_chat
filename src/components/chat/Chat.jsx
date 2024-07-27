@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import './chat.css'
 import EmojiPicker from "emoji-picker-react"
+import { onSnapshot, doc } from 'firebase/firestore'
+import { db } from '../../lib/firebase'
 
 const Chat = () => {
+
+  const [chat, setChat] = useState()
 
   // Funtion hover for emoji
   const [imgaeSrc, setImageSrc] = useState(false)
@@ -18,6 +22,16 @@ const Chat = () => {
 
   useEffect(() => {
     endRef.current.scrollIntoView({ behavior: 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    const unSub = onSnapshot(doc(db, "chats", 'qnGM47NUdtVXcGzFVkGk'), (res) => {
+      setChat(res.data())
+    })
+
+    return () => {
+      unSub()
+    }
   }, [])
 
   // Hanlde Aciton click emoji
