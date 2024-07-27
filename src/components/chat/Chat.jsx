@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import './chat.css'
 import EmojiPicker from "emoji-picker-react"
-import { onSnapshot, doc } from 'firebase/firestore'
+import { onSnapshot, doc, updateDoc, arrayUnion, getDoc } from 'firebase/firestore'
 import { db } from '../../lib/firebase'
 import { useChatStore } from '../../lib/chatStore'
+import { useUserStore } from '../../lib/userStore'
 
 const Chat = () => {
 
-  const {chatId} =  useChatStore()
+  const {chatId, user} =  useChatStore()
+  const {currentUser} =  useUserStore()
 
   const [chat, setChat] = useState()
 
@@ -40,6 +42,46 @@ const Chat = () => {
   // Hanlde Aciton click emoji
   const handleEmoji = e => {
     setText(prev => prev + e.emoji)
+  }
+
+  // Handle Action click send
+  const handleSend = async () => {
+    if (text === "") return
+
+    try {
+      
+      await updateDoc(doc(db, "chats", chatId), {
+        messages: arrayUnion({
+          senderId: currentUser.id,
+          text,
+          createdAt: new Date()
+        })
+      })
+
+      const userIDs = [currentUser.id, user.id]
+
+      userIDs.forEach(async (id) => {
+
+        const userChatsRef = doc(db, "userchats", id)
+        const userChatsSnap = await getDoc(userChatsRef)
+
+        if (userChatsSnap.exists()) {
+          const userChatsData = userChatsSnap.data()
+
+          const chatIndex = userChatsData.chats.findIndex(c => c.chatId === chatId)
+
+          userChatsData.chats[chatIndex].lastMessage = text
+          userChatsData.chats[chatIndex].isSeen = id === currentUser.id ? true : false
+          userChatsData.chats[chatIndex].updatedAt = Date.now()
+
+          await updateDoc(userChatsRef, {
+            chats: userChatsData.chats
+          })
+        }
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -103,7 +145,7 @@ const Chat = () => {
             />
           </div>
         </div>
-        <button className="sendButton">Send</button>
+        <button className="sendButton" onClick={handleSend}>Send</button>
       </div>
     </div>
   )
