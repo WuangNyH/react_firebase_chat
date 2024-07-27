@@ -3,8 +3,11 @@ import './chat.css'
 import EmojiPicker from "emoji-picker-react"
 import { onSnapshot, doc } from 'firebase/firestore'
 import { db } from '../../lib/firebase'
+import { useChatStore } from '../../lib/chatStore'
 
 const Chat = () => {
+
+  const {chatId} =  useChatStore()
 
   const [chat, setChat] = useState()
 
@@ -25,14 +28,14 @@ const Chat = () => {
   }, [])
 
   useEffect(() => {
-    const unSub = onSnapshot(doc(db, "chats", 'qnGM47NUdtVXcGzFVkGk'), (res) => {
+    const unSub = onSnapshot(doc(db, "chats", chatId), (res) => {
       setChat(res.data())
     })
 
     return () => {
       unSub()
     }
-  }, [])
+  }, [chatId])
 
   // Hanlde Aciton click emoji
   const handleEmoji = e => {
@@ -56,51 +59,23 @@ const Chat = () => {
           <img src="./info.png" alt="" />
         </div>
       </div>
+
       {/* Chat Message */}
       <div className="center">
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
-            <span>1 min ago</span>
+        { chat?.messages?.map(message => (    
+          <div className="message own" key={message?.createdAt}>
+            <div className="texts">
+            {message.img &&<img src={message.img} alt="" />}
+              <p>{message.text}</p>
+              {/* <span>1 min ago</span> */}
+            </div>
           </div>
-        </div>
-        <div className="message own">
-          <div className="texts">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message own">
-          <div className="texts">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message own">
-          <div className="texts">
-          <img src="https://images.pexels.com/photos/19155212/pexels-photo-19155212/free-photo-of-roof-on-a-yellow-building.jpeg" alt="" />
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos totam debitis molestias quasi possimus autem, quas impedit similique? Culpa facilis voluptatibus necessitatibus eius molestias, eaque velit numquam laborum dicta ratione.</p>
-            <span>1 min ago</span>
-          </div>
-        </div>
+        ))}
+
         {/* Auto Scroll */}
         <div ref={endRef}></div>
       </div>
+
       {/* Type message and image */}
       <div className="bottom">
         <div className="icons">
