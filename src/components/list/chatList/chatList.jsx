@@ -13,6 +13,8 @@ const ChatList = () => {
 
   const [chats, setChats] = useState([])
 
+  const [input, setInput] = useState("")
+
   const {currentUser} =  useUserStore()
 
   const {changeChat} =  useChatStore()
@@ -68,12 +70,14 @@ const ChatList = () => {
 
   }
 
+  const filteredChats = chats.filter(chat => chat.user.username.toLowerCase().includes(input.toLowerCase()))
+
   return (
     <div className='chatList'>
       <div className="search">
         <div className="searchBar">
           <img src="./search.png" alt="" />
-          <input type="text" placeholder='Search' />
+          <input type="text" placeholder='Search' onChange={(e) => setInput(e.target.value)}/>
         </div>
         <img 
           src={addMode ? "./minus.png" : "./plus.png"} // Toggle between plus and minus icon
@@ -82,7 +86,7 @@ const ChatList = () => {
         />
       </div>
       {/* List User */}
-      {chats.map(chat => (
+      {filteredChats.map(chat => (
         <div 
           className="item" 
           key={chat.chatId} 
